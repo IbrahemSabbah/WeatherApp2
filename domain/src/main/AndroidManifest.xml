@@ -3,12 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.domain">
 
-    <application>
 
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            tools:node="remove"></provider>
-
-    </application>
 </manifest>

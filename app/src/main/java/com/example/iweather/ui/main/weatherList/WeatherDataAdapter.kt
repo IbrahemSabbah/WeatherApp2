@@ -78,12 +78,15 @@ class WeatherDataAdapter(private val layoutType: WeatherListFragment.ListViewTyp
                     weatherDataItemBinding.weatherDetails.visibility=View.GONE
                 }
                 WeatherListFragment.ListViewType.List -> {
-                    val view=weatherDataItemBinding.weatherDetails.inflate()
-                    val detailsBinding=WeatherDescriptionDetailsBinding.bind(view)
-                    detailsBinding.weatherDescription.text=item.weatherDescription
-                    detailsBinding.windSpeed.text = "${item.windsSpeed}km/h"
-                    detailsBinding.feelLike.text = item.feelsLike.addDegree()
-                    detailsBinding.humidty.text = item.humidity.addDegree()
+                    try {
+                        val view = weatherDataItemBinding.weatherDetails.inflate()
+                        val detailsBinding = WeatherDescriptionDetailsBinding.bind(view)
+                        detailsBinding.weatherDescription.text = item.weatherDescription
+                        detailsBinding.windSpeed.text = "${item.windsSpeed}km/h"
+                        detailsBinding.feelLike.text = item.feelsLike.addDegree()
+                        detailsBinding.humidty.text = item.humidity.addDegree()
+                    }
+                    catch (e:Exception){}
                 }
             }
 
