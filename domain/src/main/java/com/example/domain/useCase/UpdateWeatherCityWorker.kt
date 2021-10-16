@@ -6,7 +6,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.example.datasource.api.model.DataState
 import com.example.datasource.prefernce.AppPreference
-import com.example.domain.repo.citySearch.CityDomain
+import com.example.domain.repo.city.CityDomain
 import com.example.domain.repo.conditions.ConditionDomainRepo
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -16,7 +16,7 @@ import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 @HiltWorker
-class CitySearchWorker @AssistedInject constructor(
+class UpdateWeatherCityWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted params: WorkerParameters
 ) : CoroutineWorker(appContext, params) {
@@ -85,7 +85,7 @@ class CitySearchWorker @AssistedInject constructor(
         }
 
         fun startWorker(context: Context, cities: Array<String>) {
-            val citySearchWorker = OneTimeWorkRequestBuilder<CitySearchWorker>()
+            val citySearchWorker = OneTimeWorkRequestBuilder<UpdateWeatherCityWorker>()
             citySearchWorker.setInputData(getWorkerData(cities).build())
 
             WorkManager.getInstance(context).enqueueUniqueWork(

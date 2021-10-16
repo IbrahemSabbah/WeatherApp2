@@ -1,4 +1,4 @@
-package com.example.domain.repo.citySearch
+package com.example.domain.repo.city
 
 import com.example.datasource.api.ApiHelper
 import com.example.datasource.api.model.DataState

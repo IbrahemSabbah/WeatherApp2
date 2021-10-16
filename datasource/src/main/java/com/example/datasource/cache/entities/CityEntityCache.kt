@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "city")
 data class CityEntityCache(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
-    val name: String,
-    val color: String,
-)
+    val name: String
+    )

@@ -65,7 +65,7 @@ dependencies {
     // Ui Helper
     implementation UIHelper.GOOGLE_MATERIAL
     implementation Image.COIL
-
+    implementation SearchView.MATERIAL_SEARCH_VIEW
     // Navigation
     implementation NavigationJetpack.NAVIGATION_FRAGMENT_KTX
     implementation NavigationJetpack.NAVIGATION_UI_KTX
@@ -83,5 +83,6 @@ dependencies {
     // Paginate
     implementation PaginateJetpack.PAGINATE_RUNTIME
 
+    implementation Utility.UTIL_CODE
 
 }

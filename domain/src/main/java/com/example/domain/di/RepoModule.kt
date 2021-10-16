@@ -6,12 +6,14 @@ import com.example.datasource.cache.dao.ConditionsDAO
 import com.example.datasource.prefernce.AppPreference
 import com.example.domain.repo.appPreference.AppPreferenceDomain
 import com.example.domain.repo.appPreference.AppPreferenceRepo
-import com.example.domain.repo.citySearch.CityDomain
-import com.example.domain.repo.citySearch.CityDomainRepo
+import com.example.domain.repo.city.CityDomain
+import com.example.domain.repo.city.CityDomainRepo
 import com.example.domain.repo.conditions.ConditionDomain
 import com.example.domain.repo.conditions.ConditionDomainRepo
 import com.example.domain.repo.weatherData.WeatherDataDomain
 import com.example.domain.repo.weatherData.WeatherDataDomainRepo
+import com.example.domain.useCase.citySearch.CitySearch
+import com.example.domain.useCase.citySearch.CitySearchUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,5 +50,13 @@ class RepoModule {
     fun provideWeatherDataRepo(cityDAO: CityDAO): WeatherDataDomain {
         return WeatherDataDomainRepo(cityDAO)
     }
+
+
+    @Singleton
+    @Provides
+    fun provideCitySearchUseCase(apiHelper: ApiHelper): CitySearch {
+        return CitySearchUseCase(apiHelper)
+    }
+
 
 }

@@ -28,7 +28,6 @@ interface CityDAO {
         Select 
         city.id 'cityId',
         city.name 'cityName',
-        city.color 'cityColor',
         conditions.`temp`   'temp',
         conditions.weatherIcon 'weatherIcon',
         conditions.weatherDescription 'weatherDescription',

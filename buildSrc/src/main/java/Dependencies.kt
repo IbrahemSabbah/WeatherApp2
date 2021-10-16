@@ -57,3 +57,11 @@ object PaginateJetpack{
 object Image{
     const val COIL="io.coil-kt:coil:1.4.0"
 }
+
+object SearchView{
+    const val MATERIAL_SEARCH_VIEW="com.github.arimorty:floatingsearchview:2.1.1"
+}
+
+object Utility{
+    const val UTIL_CODE="com.blankj:utilcodex:1.30.6"
+}

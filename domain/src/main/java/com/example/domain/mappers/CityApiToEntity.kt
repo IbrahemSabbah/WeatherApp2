@@ -7,9 +7,7 @@ import com.example.domain.model.EntityMapper
 class CityApiToEntity : EntityMapper<RequestApiEntity, CityEntityCache> {
     override fun mapFromEntity(entity: RequestApiEntity): CityEntityCache {
         return CityEntityCache(
-            name = entity.query,
-            color = ""
-        )
+            name = entity.query)
     }
 
     override fun mapToEntity(domainModel: CityEntityCache): RequestApiEntity {

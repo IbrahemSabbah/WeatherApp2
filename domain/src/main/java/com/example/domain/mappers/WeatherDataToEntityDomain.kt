@@ -10,7 +10,6 @@ class WeatherDataToEntityDomain : EntityMapper<WeatherCityEntityCache, WeatherCi
     override fun mapFromEntity(entity: WeatherCityEntityCache): WeatherCityEntityDomain {
         return WeatherCityEntityDomain(
             cityName = entity.cityName,
-            cityColor = entity.cityColor,
             temp = entity.temp,
             weatherIcon = entity.weatherIcon.replace("http","https"),
             weatherDescription = entity.weatherDescription,

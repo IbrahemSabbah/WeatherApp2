@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.5119791666666667" />
+        <entry key="../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_2.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.6072916666666667" />
         <entry key="app/src/main/res/drawable/bg_round_search_view.xml" value="0.4041666666666667" />
         <entry key="app/src/main/res/drawable/ic_feel_like.xml" value="0.528125" />
@@ -21,6 +23,7 @@
         <entry key="app/src/main/res/layout/fetch_default_city_ui_state.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/fetching_default_city_ui_state.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/fragment_weather_list.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/search_item.xml" value="0.512213557256995" />
         <entry key="app/src/main/res/layout/wearher_details.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/wearher_details_item.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/weather_data_item.xml" value="0.5119791666666667" />
@@ -29,6 +32,7 @@
         <entry key="app/src/main/res/layout/weather_list_fragment.xml" value="0.2767210144927536" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.6072916666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.6072916666666667" />
+        <entry key="app/src/main/res/xml/searchable.xml" value="0.26666666666666666" />
         <entry key="domain/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.31979166666666664" />
       </map>
     </option>
