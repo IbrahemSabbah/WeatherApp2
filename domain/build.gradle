@@ -44,7 +44,7 @@ dependencies {
 
 
     // Worker Manager
-    implementation Worker.WORKER_RUNTIME
+    api Worker.WORKER_RUNTIME
 
 
 }

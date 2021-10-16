@@ -1,11 +1,15 @@
 package com.example.domain.di
 
 import com.example.datasource.api.ApiHelper
+import com.example.datasource.cache.dao.CityDAO
+import com.example.datasource.cache.dao.ConditionsDAO
 import com.example.datasource.prefernce.AppPreference
 import com.example.domain.repo.appPreference.AppPreferenceDomain
 import com.example.domain.repo.appPreference.AppPreferenceRepo
-import com.example.domain.repo.citySearch.CitySearch
-import com.example.domain.repo.citySearch.CitySearchRepo
+import com.example.domain.repo.citySearch.CityDomain
+import com.example.domain.repo.citySearch.CityDomainRepo
+import com.example.domain.repo.conditions.ConditionDomain
+import com.example.domain.repo.conditions.ConditionDomainRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,8 +30,14 @@ class RepoModule {
 
     @Singleton
     @Provides
-    fun provideCitySearchRepo(apiHelper: ApiHelper): CitySearch {
-        return CitySearchRepo(apiHelper)
+    fun provideCitySearchRepo(apiHelper: ApiHelper, cityDAO: CityDAO): CityDomain {
+        return CityDomainRepo(apiHelper,cityDAO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideConditionsRepo(conditionsDAO: ConditionsDAO): ConditionDomain {
+        return ConditionDomainRepo(conditionsDAO)
     }
 
 }

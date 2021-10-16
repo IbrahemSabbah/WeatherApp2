@@ -1,5 +1,8 @@
 package com.example.datasource.api.model
 
+import com.google.gson.annotations.SerializedName
+
 data class QueryWeatherResponseAPI(
-    val `data`: Data
+    @SerializedName("data")
+    val responseData: Data
 )

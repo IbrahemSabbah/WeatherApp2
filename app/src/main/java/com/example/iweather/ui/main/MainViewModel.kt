@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+
 import com.example.domain.repo.appPreference.AppPreferenceDomain
 import com.example.domain.useCase.CitySearchWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val appPreferenceRepo: AppPreferenceDomain) :
+    private val appPreferenceRepo: AppPreferenceDomain
+) :
     ViewModel() {
 
     private val _state = MutableStateFlow<MainUiState>(MainUiState.None)
@@ -52,8 +54,11 @@ class MainViewModel @Inject constructor(
                             _state.value = MainUiState.SuccessFetch
 
                         }
-                        else -> {
+                        WorkInfo.State.FAILED, WorkInfo.State.CANCELLED -> {
                             _state.value = MainUiState.FailFetchingDefaultCity
+
+                        }
+                        else -> {
 
                         }
                     }

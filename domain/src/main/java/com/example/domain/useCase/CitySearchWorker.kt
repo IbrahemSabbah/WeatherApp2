@@ -5,7 +5,8 @@ import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.example.datasource.api.model.DataState
-import com.example.domain.repo.citySearch.CitySearch
+import com.example.domain.repo.citySearch.CityDomain
+import com.example.domain.repo.conditions.ConditionDomainRepo
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.async
@@ -22,17 +23,19 @@ class CitySearchWorker @AssistedInject constructor(
     private val TAG = this.javaClass.canonicalName
 
     @Inject
-    lateinit var citySearchRepo: CitySearch
+    lateinit var cityDomainRepo: CityDomain
 
+    @Inject
+    lateinit var conditionsRepo: ConditionDomainRepo
 
     override suspend fun doWork(): Result {
 
-       return coroutineScope {
+        return coroutineScope {
             return@coroutineScope try {
                 val cities = getCities()
 
                 val asyncTasks = cities!!.map {
-                    async { citySearchRepo.citySearch(it) }
+                    async { cityDomainRepo.weatherQuery(it) }
                 }
                 val response = asyncTasks.awaitAll()
 
@@ -40,8 +43,20 @@ class CitySearchWorker @AssistedInject constructor(
 
                 if (isFail)
                     Result.failure()
-                else
+                else {
+                    response.map { it as DataState.Success }.forEach {
+                        val cityId =
+                            cityDomainRepo.addNewCity(it.data.responseData.request.first())
+                        cityId?.run {
+                            conditionsRepo.addNewCondition(
+                                this,
+                                it.data.responseData.current_condition.first()
+                            )
+                        } ?: Log.d(TAG, "City Already Exist")
+                    }
                     Result.success()
+
+                }
             } catch (e: Exception) {
                 Log.d(TAG, e.message ?: "")
                 Result.failure()
