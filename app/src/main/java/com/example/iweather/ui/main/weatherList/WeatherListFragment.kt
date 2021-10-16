@@ -5,15 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewStub
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.iweather.R
 import com.example.iweather.databinding.FragmentWeatherListBinding
 import com.example.iweather.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -23,6 +22,8 @@ class WeatherListFragment : Fragment() {
     private val viewBinding get() = fragmentWeatherListBinding!!
     private val viewModel: MainViewModel by activityViewModels()
     private var viewStubInflated: View? = null
+    private lateinit var weatherDataAdapter: WeatherDataAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +40,23 @@ class WeatherListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initUiState()
-        initSearchView()
+
+        setupSearchView()
+        setupListView()
+        setupViewModel()
+
     }
 
-    private fun initUiState() {
+    private fun setupListView() {
+        viewBinding.recycleView.run {
+            weatherDataAdapter = WeatherDataAdapter()
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = weatherDataAdapter
+            addItemDecoration(SpacingDecoration())
+        }
+    }
+
+    private fun setupViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.uiState.collectLatest {
                 when (it) {
@@ -56,9 +69,16 @@ class WeatherListFragment : Fragment() {
             }
 
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.getWeatherData().collectLatest {
+                weatherDataAdapter.submitData(it)
+            }
+        }
     }
 
-    private fun initSearchView() {
+
+    private fun setupSearchView() {
         viewBinding.searchView.setOnClickListener {
             viewBinding.searchView.isIconified = false
         }

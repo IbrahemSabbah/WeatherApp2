@@ -46,5 +46,8 @@ dependencies {
     // Worker Manager
     api Worker.WORKER_RUNTIME
 
+    // Paginate
+    implementation PaginateJetpack.PAGINATE_RUNTIME
+
 
 }

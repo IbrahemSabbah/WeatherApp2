@@ -48,3 +48,8 @@ object NavigationJetpack {
 object Security{
     const val ANDROID_CRYPTO="androidx.security:security-crypto:1.0.0"
 }
+
+object PaginateJetpack{
+    const val PAGINATE_VERSION="3.0.1"
+    const val PAGINATE_RUNTIME="androidx.paging:paging-runtime:$PAGINATE_VERSION"
+}

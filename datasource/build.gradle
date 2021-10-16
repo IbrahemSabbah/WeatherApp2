@@ -66,6 +66,9 @@ dependencies {
     implementation RoomDB.ROOM_RUNTIME
     kapt RoomDB.ROOM_COMPILER
 
+    // Security
     implementation Security.ANDROID_CRYPTO
 
+    // Paginate
+    implementation PaginateJetpack.PAGINATE_RUNTIME
 }

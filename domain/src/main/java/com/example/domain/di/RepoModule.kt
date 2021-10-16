@@ -10,6 +10,8 @@ import com.example.domain.repo.citySearch.CityDomain
 import com.example.domain.repo.citySearch.CityDomainRepo
 import com.example.domain.repo.conditions.ConditionDomain
 import com.example.domain.repo.conditions.ConditionDomainRepo
+import com.example.domain.repo.weatherData.WeatherDataDomain
+import com.example.domain.repo.weatherData.WeatherDataDomainRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +40,13 @@ class RepoModule {
     @Provides
     fun provideConditionsRepo(conditionsDAO: ConditionsDAO): ConditionDomain {
         return ConditionDomainRepo(conditionsDAO)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideWeatherDataRepo(cityDAO: CityDAO): WeatherDataDomain {
+        return WeatherDataDomainRepo(cityDAO)
     }
 
 }

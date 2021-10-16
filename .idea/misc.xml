@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/fetch_default_city_ui_state.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/fetching_default_city_ui_state.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/fragment_weather_list.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/weather_data_item.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/weather_list_fragment.xml" value="0.2767210144927536" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.6072916666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.6072916666666667" />

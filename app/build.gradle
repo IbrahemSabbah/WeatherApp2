@@ -80,5 +80,8 @@ dependencies {
     // Modules
     implementation project(path: ':domain')
 
+    // Paginate
+    implementation PaginateJetpack.PAGINATE_RUNTIME
+
 
 }
