@@ -64,7 +64,7 @@ dependencies {
 
     // Ui Helper
     implementation UIHelper.GOOGLE_MATERIAL
-
+    implementation Image.COIL
 
     // Navigation
     implementation NavigationJetpack.NAVIGATION_FRAGMENT_KTX

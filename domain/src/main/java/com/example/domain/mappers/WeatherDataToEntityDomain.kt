@@ -12,7 +12,7 @@ class WeatherDataToEntityDomain : EntityMapper<WeatherCityEntityCache, WeatherCi
             cityName = entity.cityName,
             cityColor = entity.cityColor,
             temp = entity.temp,
-            weatherIcon = entity.weatherIcon,
+            weatherIcon = entity.weatherIcon.replace("http","https"),
             windsSpeed = entity.windsSpeed,
             humidity = entity.humidity,
             feelsLike = entity.feelsLike

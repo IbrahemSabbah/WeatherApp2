@@ -53,3 +53,7 @@ object PaginateJetpack{
     const val PAGINATE_VERSION="3.0.1"
     const val PAGINATE_RUNTIME="androidx.paging:paging-runtime:$PAGINATE_VERSION"
 }
+
+object Image{
+    const val COIL="io.coil-kt:coil:1.4.0"
+}

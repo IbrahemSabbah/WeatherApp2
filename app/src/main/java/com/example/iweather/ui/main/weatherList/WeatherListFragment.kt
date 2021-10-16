@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.iweather.R
 import com.example.iweather.databinding.FragmentWeatherListBinding
 import com.example.iweather.ui.main.MainViewModel
@@ -23,6 +24,7 @@ class WeatherListFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
     private var viewStubInflated: View? = null
     private lateinit var weatherDataAdapter: WeatherDataAdapter
+    private var itemDecoration = SpacingDecoration()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,17 +44,50 @@ class WeatherListFragment : Fragment() {
 
 
         setupSearchView()
-        setupListView()
+        setupListView(ListViewType.Grid)
         setupViewModel()
+
+        viewBinding.buttonToggle.addOnButtonCheckedListener { group, checkedId, isChecked ->
+
+
+            viewBinding.recycleView.run {
+
+                if (checkedId == viewBinding.viewAsTiels.id && isChecked) {
+                    handleListViewType(ListViewType.Grid)
+
+                } else {
+                    handleListViewType(ListViewType.List)
+
+                }
+            }
+        }
 
     }
 
-    private fun setupListView() {
+    private fun setupListView(listViewType: ListViewType) {
         viewBinding.recycleView.run {
             weatherDataAdapter = WeatherDataAdapter()
-            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = weatherDataAdapter
-            addItemDecoration(SpacingDecoration())
+            handleListViewType(listViewType)
+
+        }
+
+
+    }
+
+    private fun handleListViewType(listViewType: ListViewType) {
+        viewBinding.recycleView.run {
+            when (listViewType) {
+                ListViewType.Grid -> {
+                    layoutManager = GridLayoutManager(requireContext(), 2)
+                    itemDecoration = SpacingDecoration()
+                    addItemDecoration(itemDecoration)
+                }
+                ListViewType.List -> {
+                    removeItemDecoration(itemDecoration)
+                    layoutManager = LinearLayoutManager(requireContext())
+                }
+            }
         }
     }
 
@@ -75,6 +110,7 @@ class WeatherListFragment : Fragment() {
                 weatherDataAdapter.submitData(it)
             }
         }
+
     }
 
 
@@ -106,5 +142,11 @@ class WeatherListFragment : Fragment() {
         object FetchingDefaultCity : ViewStubSate()
         object SuccessFetch : ViewStubSate()
         object FailFetchingDefaultCity : ViewStubSate()
+
+    }
+
+    sealed class ListViewType {
+        object List : ListViewType()
+        object Grid : ListViewType()
     }
 }

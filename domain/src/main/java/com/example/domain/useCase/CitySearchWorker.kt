@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.example.datasource.api.model.DataState
+import com.example.datasource.prefernce.AppPreference
 import com.example.domain.repo.citySearch.CityDomain
 import com.example.domain.repo.conditions.ConditionDomainRepo
 import dagger.assisted.Assisted
@@ -27,6 +28,9 @@ class CitySearchWorker @AssistedInject constructor(
 
     @Inject
     lateinit var conditionsRepo: ConditionDomainRepo
+
+    @Inject
+    lateinit var appPreference: AppPreference
 
     override suspend fun doWork(): Result {
 
@@ -54,6 +58,7 @@ class CitySearchWorker @AssistedInject constructor(
                             )
                         } ?: Log.d(TAG, "City Already Exist")
                     }
+                    appPreference.isDefaultCityFetched(true)
                     Result.success()
 
                 }

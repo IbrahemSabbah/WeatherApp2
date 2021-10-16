@@ -9,12 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.WeatherCityEntityDomain
 import com.example.iweather.databinding.WeatherDataItemBinding
 import android.graphics.drawable.GradientDrawable
-
-
+import coil.load
+import coil.transform.CircleCropTransformation
+import coil.transform.GrayscaleTransformation
+import com.example.iweather.ColorGradientUtil
 
 
 class WeatherDataAdapter :
-    PagingDataAdapter<WeatherCityEntityDomain, WeatherDataAdapter.WeatherDataViewHolder>(diffCallback) {
+    PagingDataAdapter<WeatherCityEntityDomain, WeatherDataAdapter.WeatherDataViewHolder>(
+        diffCallback
+    ) {
     override fun onBindViewHolder(holder: WeatherDataViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bindTo(it)
@@ -59,13 +63,10 @@ class WeatherDataAdapter :
             weatherDataItemBinding.cityName.text = item.cityName
             weatherDataItemBinding.cityTemp.text = item.temp
 
-            val colors = intArrayOf(Color.parseColor("#008000"), Color.TRANSPARENT)
-            val gd = GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM, colors
-            )
-            gd.cornerRadius=50f
-
-            weatherDataItemBinding.root.background = gd
+            weatherDataItemBinding.root.background = ColorGradientUtil.generateColorGradient(absoluteAdapterPosition)
+            weatherDataItemBinding.weathetIcon.load(item.weatherIcon){
+                transformations( CircleCropTransformation())
+            }
         }
     }
 }
