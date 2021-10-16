@@ -24,8 +24,8 @@ class RepoModule {
         return AppPreferenceRepo(appPreference)
     }
 
-    @Provides
     @Singleton
+    @Provides
     fun provideCitySearchRepo(apiHelper: ApiHelper): CitySearch {
         return CitySearchRepo(apiHelper)
     }

@@ -22,7 +22,7 @@ class WeatherListFragment : Fragment() {
     private var fragmentWeatherListBinding: FragmentWeatherListBinding? = null
     private val viewBinding get() = fragmentWeatherListBinding!!
     private val viewModel: MainViewModel by activityViewModels()
-
+    private var viewStubInflated: View? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,23 +66,19 @@ class WeatherListFragment : Fragment() {
     }
 
     private fun handleViewStub(viewStubState: ViewStubSate) {
-        val layoutId = when (viewStubState) {
+        viewStubInflated?.visibility = View.GONE
+        val viewStub = when (viewStubState) {
             ViewStubSate.FetchingDefaultCity -> {
-                R.layout.fail_default_city_ui_state
+                viewBinding.viewStubFetching
             }
             ViewStubSate.FailFetchingDefaultCity -> {
-                R.layout.fetching_default_city_ui_state
+                viewBinding.viewStubFail
 
             }
-            ViewStubSate.SuccessFetch -> 0
+            ViewStubSate.SuccessFetch -> null
         }
 
-        if (layoutId == 0) {
-            viewBinding.viewStub.visibility = View.GONE
-            return
-        }
-        viewBinding.viewStub.layoutResource = layoutId
-        viewBinding.viewStub.inflate()
+        viewStubInflated = viewStub?.inflate()
     }
 
 

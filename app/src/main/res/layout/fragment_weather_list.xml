@@ -60,7 +60,7 @@
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <ViewStub
-        android:id="@+id/viewStub"
+        android:id="@+id/viewStubFetching"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout="@layout/fetching_default_city_ui_state"
@@ -68,6 +68,17 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
+    <ViewStub
+        android:id="@+id/viewStubFail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout="@layout/fail_default_city_ui_state"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
 
 
 

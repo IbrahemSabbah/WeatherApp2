@@ -103,7 +103,7 @@ class NetworkModule {
     @Singleton
     @NetworkModule.API_URL
     fun provideApiUrl(): String {
-        return apiKeyFromJni()!!
+        return apiUrlFromJni()!!
 
     }
 

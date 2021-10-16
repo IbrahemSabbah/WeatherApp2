@@ -34,7 +34,7 @@ android {
 dependencies {
 
     implementation AndroidX.CORE_KTX
-    implementation project(path: ':dataSource')
+    api project(path: ':dataSource')
 
     // Hilt DI
     implementation Hilt.HILT_ANDROID
