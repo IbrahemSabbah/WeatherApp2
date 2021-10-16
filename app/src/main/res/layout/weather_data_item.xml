@@ -28,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
-
+            android:maxWidth="120dp"
+            android:ellipsize="end"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/cityTemp"
             app:layout_constraintTop_toBottomOf="@+id/cityTemp"
@@ -48,12 +49,11 @@
             android:id="@+id/weatherDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout="@layout/weather_description_details"
             android:inflatedId="@+id/weatherDescriptionDetails"
+            android:layout="@layout/weather_description_details"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weathetIcon"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/weathetIcon" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
