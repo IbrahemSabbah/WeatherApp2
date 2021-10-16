@@ -39,6 +39,7 @@ class WeatherListFragment : Fragment() {
         return viewBinding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -66,7 +67,7 @@ class WeatherListFragment : Fragment() {
 
     private fun setupListView(listViewType: ListViewType) {
         viewBinding.recycleView.run {
-            weatherDataAdapter = WeatherDataAdapter()
+            weatherDataAdapter = WeatherDataAdapter(ListViewType.Grid)
             adapter = weatherDataAdapter
             handleListViewType(listViewType)
 
@@ -77,6 +78,8 @@ class WeatherListFragment : Fragment() {
 
     private fun handleListViewType(listViewType: ListViewType) {
         viewBinding.recycleView.run {
+            weatherDataAdapter.listViewType=listViewType
+
             when (listViewType) {
                 ListViewType.Grid -> {
                     layoutManager = GridLayoutManager(requireContext(), 2)
@@ -88,6 +91,7 @@ class WeatherListFragment : Fragment() {
                     layoutManager = LinearLayoutManager(requireContext())
                 }
             }
+
         }
     }
 

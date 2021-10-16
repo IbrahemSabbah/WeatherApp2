@@ -31,6 +31,7 @@ interface CityDAO {
         city.color 'cityColor',
         conditions.`temp`   'temp',
         conditions.weatherIcon 'weatherIcon',
+        conditions.weatherDescription 'weatherDescription',
         conditions.windsSpeed 'windsSpeed',
         conditions.humidity 'humidity',
         conditions.feelsLike 'feelsLike'
