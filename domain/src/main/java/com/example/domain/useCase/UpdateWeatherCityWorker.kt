@@ -49,14 +49,26 @@ class UpdateWeatherCityWorker @AssistedInject constructor(
                     Result.failure()
                 else {
                     response.map { it as DataState.Success }.forEach {
+                        var isExist = false
+                        var cityName = it.data.responseData.request.first().query
                         val cityId =
-                            cityDomainRepo.addNewCity(it.data.responseData.request.first())
-                        cityId?.run {
-                            conditionsRepo.addNewCondition(
-                                this,
+                            if (cityDomainRepo.isCityExist(cityName)) {
+                                isExist = true
+                                cityDomainRepo.getCityByName(cityName).id
+                            } else
+                                cityDomainRepo.addNewCity(it.data.responseData.request.first())
+
+                        if (isExist)
+                            conditionsRepo.updateCondition(
+                                cityId?.toLong()!!,
                                 it.data.responseData.current_condition.first()
                             )
-                        } ?: Log.d(TAG, "City Already Exist")
+                        else
+                            conditionsRepo.addNewCondition(
+                                cityId?.toLong()!!,
+                                it.data.responseData.current_condition.first()
+                            )
+
                     }
                     appPreference.isDefaultCityFetched(true)
                     Result.success()

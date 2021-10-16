@@ -16,4 +16,23 @@ class ConditionDomainRepo @Inject constructor(private val conditionsDAO: Conditi
         }
     }
 
+    override suspend fun updateCondition(
+        cityId: Long,
+        currentConditionApiEntity: CurrentConditionApiEntity
+    ) {
+        coroutineScope {
+            val conditionEntityCache=ConditionApiToEntity(cityId).mapFromEntity(currentConditionApiEntity)
+
+            conditionsDAO.update(
+                cityId = cityId,
+                temp = conditionEntityCache.temp,
+                weatherIcon = conditionEntityCache.weatherIcon,
+                weatherDescription = conditionEntityCache.weatherDescription,
+                windsSpeed = conditionEntityCache.windsSpeed,
+                humidity = conditionEntityCache.humidity,
+                feelsLike = conditionEntityCache.feelsLike
+            )
+        }
+    }
+
 }

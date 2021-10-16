@@ -13,5 +13,6 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         startActivity(MainActivity.getIntent(applicationContext))
+        finish()
     }
 }

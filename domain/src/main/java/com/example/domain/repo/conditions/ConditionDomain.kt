@@ -5,4 +5,5 @@ import com.example.datasource.api.model.CurrentConditionApiEntity
 interface ConditionDomain {
 
     suspend fun addNewCondition(cityId: Long, currentConditionApiEntity: CurrentConditionApiEntity)
+    suspend fun updateCondition(cityId: Long, currentConditionApiEntity: CurrentConditionApiEntity)
 }

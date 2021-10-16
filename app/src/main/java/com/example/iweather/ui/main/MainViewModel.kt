@@ -13,9 +13,12 @@ import com.example.domain.model.CityNameDomainEntity
 import com.example.domain.model.WeatherCityEntityDomain
 
 import com.example.domain.repo.appPreference.AppPreferenceDomain
+import com.example.domain.repo.city.CityDomain
+import com.example.domain.repo.city.CityDomainRepo
 import com.example.domain.repo.weatherData.WeatherDataDomain
 import com.example.domain.useCase.FetchCityWeatherWorker
 import com.example.domain.useCase.GetDefaultCityWorker
+import com.example.domain.useCase.UpdateWeatherCityWorker
 import com.example.domain.useCase.citySearch.CitySearch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -29,7 +32,8 @@ class MainViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val appPreferenceRepo: AppPreferenceDomain,
     private val weatherDataDomainRepo: WeatherDataDomain,
-    private val citySearchUseCase: CitySearch
+    private val citySearchUseCase: CitySearch,
+    private val cityDomainRepo: CityDomain
 ) :
     ViewModel() {
 
@@ -85,7 +89,7 @@ class MainViewModel @Inject constructor(
                             _state.value = MainUiState.SearchLoading(false)
 
                         }
-                        WorkInfo.State.ENQUEUED,WorkInfo.State.RUNNING->{
+                        WorkInfo.State.ENQUEUED, WorkInfo.State.RUNNING -> {
                             _state.value = MainUiState.SearchLoading(true)
 
                         }
@@ -97,6 +101,12 @@ class MainViewModel @Inject constructor(
                         }
                     }
                 }
+        }
+    }
+
+    fun updateAllCity() {
+        viewModelScope.launch(Dispatchers.IO) {
+            UpdateWeatherCityWorker.startWorker(context, cityDomainRepo.getCityNameList())
         }
     }
 
@@ -115,7 +125,7 @@ class MainViewModel @Inject constructor(
                             _state.value = MainUiState.SuccessFetch
 
                         }
-                        WorkInfo.State.ENQUEUED,WorkInfo.State.RUNNING->{
+                        WorkInfo.State.ENQUEUED, WorkInfo.State.RUNNING -> {
 
                         }
                         WorkInfo.State.FAILED, WorkInfo.State.CANCELLED -> {
