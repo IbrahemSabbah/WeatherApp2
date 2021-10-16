@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">IWeather</string>
+    <string name="my_locations">My Locations</string>
+    <string name="fetching_default_weather_for_amman_irbid_and_aqaba_city">Fetching default weather for Amman,Irbid and Aqaba city</string>
+    <string name="no_weather_available_use_below_button_to_fetch_weather_for_default_city">No Weather available, use below button to fetch weather for default city</string>
+    <string name="retry">retry</string>
 </resources>

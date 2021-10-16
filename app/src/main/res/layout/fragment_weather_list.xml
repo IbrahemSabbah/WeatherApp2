@@ -5,54 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ui.main.WeatherListFragment">
+    tools:context=".ui.main.weatherList.WeatherListFragment">
 
 
     <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:queryHint="Search"
-        app:queryBackground="@android:color/transparent"
         android:background="@drawable/bg_round_search_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:elevation="6dp"
+        android:queryHint="Search"
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/textField"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:elevation="10dp"-->
-<!--        app:boxBackgroundColor="@color/white"-->
-<!--        app:boxBackgroundMode="outline"-->
-<!--        app:boxCornerRadiusBottomEnd="25dp"-->
-<!--        app:boxCornerRadiusBottomStart="25dp"-->
-<!--        app:boxCornerRadiusTopEnd="25dp"-->
-<!--        app:boxCornerRadiusTopStart="25dp"-->
-<!--        app:boxStrokeColor="@color/black"-->
-<!--        app:boxStrokeWidth="1dp"-->
-<!--        app:hintEnabled="false"-->
-<!--        app:hintAnimationEnabled="false"-->
-<!--        app:expandedHintEnabled="false"-->
-<!--        -->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent" />
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:hint="Search"-->
-<!--            tools:layout_editor_absoluteX="11dp"-->
-<!--            tools:layout_editor_absoluteY="161dp" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/my_locations"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:checkedButton="@id/viewAsList"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/appCompatTextView"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/viewAsList"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_view_list" />
+
+        <Button
+            android:id="@+id/viewAsTiels"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_view_tiles" />
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <ViewStub
+        android:id="@+id/viewStub"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout="@layout/fetching_default_city_ui_state"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

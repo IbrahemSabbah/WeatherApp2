@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "IWeather"
 include ':app'
+
+include ':domain'
+include ':dataSource'
