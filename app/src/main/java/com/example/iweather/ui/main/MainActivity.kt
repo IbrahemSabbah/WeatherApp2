@@ -24,13 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        viewModel.updateAllCity()
-        Toast.makeText(applicationContext, "Updating weather of cities...", Toast.LENGTH_LONG)
-            .show()
-    }
+
 
 
     companion object {

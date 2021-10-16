@@ -30,8 +30,11 @@ import android.widget.SearchView
 import android.provider.BaseColumns
 
 import android.database.MatrixCursor
+import android.widget.Toast
 import com.blankj.utilcode.util.KeyboardUtils
 import com.example.domain.model.CityNameDomainEntity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -91,6 +94,17 @@ class WeatherListFragment : Fragment() {
 
         }
 
+        viewBinding.swipeToRefreshLayout.setOnRefreshListener {
+            viewModel.updateAllCity()
+            Toast.makeText(requireContext(), "Refresh weather...", Toast.LENGTH_LONG)
+                .show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(2000)
+                viewBinding.swipeToRefreshLayout.isRefreshing = false
+
+            }
+        }
+
 
     }
 
@@ -124,7 +138,7 @@ class WeatherListFragment : Fragment() {
                         viewBinding.progress.hide()
                         populateAdapter(it.list)
                     }
-                    is MainViewModel.MainUiState.SearchLoading -> if(it.isLoading) viewBinding.progress.show() else viewBinding.progress.hide()
+                    is MainViewModel.MainUiState.SearchLoading -> if (it.isLoading) viewBinding.progress.show() else viewBinding.progress.hide()
                     else -> {
                     }
                 }

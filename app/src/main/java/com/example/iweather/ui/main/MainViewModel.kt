@@ -1,6 +1,7 @@
 package com.example.iweather.ui.main
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -50,6 +51,9 @@ class MainViewModel @Inject constructor(
             if (!appPreferenceRepo.isDefaultCityFetched()) {
                 _state.value = MainUiState.FetchingDefaultCity
                 runCitySearchWorker()
+            } else {
+                updateAllCity()
+
             }
         }
     }
