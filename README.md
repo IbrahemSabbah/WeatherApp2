@@ -1,7 +1,7 @@
 # WeatherApp2
 WeatherApp is an Android application that helps you to get the forecast and temperature for specific locations , This app is based on the worldweatheronline.com.
 
-<img src="Screenshot/1.png" width="240">  <img src="Screenshot/2.png" width="240">  <img src="Screenshot/3.png" width="240">  <img src="Screenshot/4.png" width="240">
+<img src="Screenshot/1.jpg" width="240">  <img src="Screenshot/2.jpg" width="240">  <img src="Screenshot/3.jpg" width="240">  <img src="Screenshot/4.jpg" width="240">
 
 # Features:
 - Application builds on MVVM and Clean Code
