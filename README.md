@@ -29,8 +29,8 @@ Import Project into Andorid Studio.
 In Android Studio, click on the "Run" button.
 
 If you have everything set up correctly:
-- The app will fetch citeis are defined before ( Amman, Irbid, Aqaba)
-- You can add new citie by search and click on it.
+- The app will fetch cities are defined before ( Amman, Irbid, Aqaba)
+- You can add new city by search and click on it.
 - App updates the weather every time you run the app or by pull to refresh feature
 
 
